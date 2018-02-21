@@ -1,0 +1,107 @@
+<head>
+        <style type = "text/css">
+                .centered{
+                        position: fixed;
+                        top:50%;
+                        left:50%;
+                        transform: translate(-50%, -50%);
+                }
+
+                input.fields{
+                        margin-top : 3%;
+                        width: 350px;
+                }
+
+                .buttonConfig{
+                        background-color:#5cb85c ; 
+                        color : #ffffff; 
+                        width:40%;
+                }
+                
+                .buttonsticks{
+                	background-color:#ffffff;
+                }
+                
+              
+			    
+			    @media (max-width: 768px) {
+			        .navbar-brand {
+			            color : #ffffff;
+			    		}
+   				}
+    			
+    			
+    			
+			    .navbar .navbar-collapse a{
+			    	float: right;
+			        color:rgb(255, 255, 255);
+			        text-align: center;
+			        padding: 14px 16px;
+			        text-decoration: none;
+			        font-size: 14px;
+			        font-weight: bold;
+			        text-align: center;
+			        
+			    }
+			    
+			    .navbar .navbar-collapse a:hover {
+			        background:rgb(255,  255, 255);
+			        color:rgb(0,0,0);
+			    }
+			    
+			    
+			    .navbar-fixed-top, .navbar-fixed-bottom {
+			        position: relative; /* this can also be static */
+			        
+			    }
+			    
+        </style>
+</head>
+
+<body style = "background :#ffffff;">
+		<!-- #34659d -->
+        <nav class="navbar navbar-fixed-top" style="background-color: #5cb85c;">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-header-center">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style= " border:solid; border-color:#ffffff;" >
+                    <span class="icon-bar buttonsticks" ></span>
+                    <span class="icon-bar buttonsticks"></span>
+                    <span class="icon-bar buttonsticks"></span>                        
+                </button>
+                <a class="navbar-brand" href="#" style="align-self: center; color:#ffffff">Patient Referral System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right" style = "margin-top : 1px;">
+                   <li><a href="/#!/admin"><span class="glyphicon glyphicon-user" ></span> &nbspADMIN</a></li>
+       			   <li ><a style = "border-left-style: solid; border-width : 1px;" href = "/#!/registration">REGISTER</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+                                      
+        
+        <div class = "container">
+       		<div class = "row">
+       		<form class="form-group centered" ng-submit = "validateLogin()" style = "padding:2%; align : center;" method="post" id="myLogin">
+                        <div class = "row">
+                                <span><h3>Doctor Login</h3></span><hr style = "border-width : 2px; border-color:rgb(68, 66, 66); margin-top:-1%; ">
+                        </div>
+                        <div class = "row">
+                                <input class ="form-control fields" type="email" required ng-model ="loginData.username" placeholder="Enter Username">
+                                <span style="color:red;" ng-show="loginData.username.$dirty && loginData.username.$invalid"></span> 
+                        </div>
+                        <div class = "row">
+                                <input class ="form-control fields" type="password" required ng-model ="loginData.password"  placeholder="Enter Password">
+                                        
+                        </div>
+                        <div class= "row" style = "margin-top:5%">
+                        
+	                                <center><input class ="form-control buttonConfig" type = "submit" value="Login"></center>
+	                                  
+                        </div> 
+                    </form>
+       		</div>                
+                            
+        </d>
+
+</body>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src = "controller.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <body>
+
+    <nav class="navbar navbar-fixed-top" style="background-color: #5cb85c;">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-header-center">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style= " border:solid; border-color:#ffffff;" >
+                    <span class="icon-bar buttonsticks" ></span>
+                    <span class="icon-bar buttonsticks"></span>
+                    <span class="icon-bar buttonsticks"></span>                        
+                </button>
+                <a class="navbar-brand" href="#" style="float: left; color:#ffffff">Patient Referral System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right " style = "margin-top : 1px;">
+                  <li class = "oncollapse"><a ng-click = "redirect('manageReasons')" >Manage Reasons</a></li>
+                  <li class = "oncollapse"><a ng-click = "redirect('manageDepartment')">Manage Departments</a></li>
+                  <li class = "oncollapse"><a ng-click = "redirect('adminHome')">Manage Doctors</a></li>
+               	  <li class = "oncollapse"><a href = "#">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	
+        
+            <div class = "container" ng-app = "manageDoctors" ng-controller="manageReasons" style = "padding-left : 30%; margin-top:10%;">
+                
+                    <div class = "row">
+                            <div class = "col-sm-4">
+                                <input class = "form-control" style ="width:100%; padding:0.5%; margin-bottom:5%;" type="text" placeholder="Enter the Reason" ng-model = "reason_field">
+                            </div>
+                            <div class = "col-sm-4">
+                                <button class= "btn" ng-click="addReason()">Add Reason</button>
+                            </div>
+                        </div>
+
+                <div class = "row table-responsive" >
+                    <table class = "table table-bordered" style = "width : 50%;">
+                        <tr style = "background:lightskyblue;">
+                            <th ng-repeat = "y in Labels" >
+                                <span>{{y}}</span>
+                            </th>
+                        </tr>
+            
+                        <tr ng-repeat="records in reasonInfo">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                {{records}}
+                            </td>
+                            <td>
+                                <button class = "btn" ng-click = "deleteReason($index)" >Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>   
+            </div>
+        </body>
+        
+        <style type = "text/css">
+               span.requiredSign{
+        color:rgb(255, 69, 69);
+        size: 1.5em;
+    }
+
+  
+	 .centered{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        height :450px;
+        width:450px;   
+        transform: translate(-50%, -50%);
+    }
+	
+    h1,h2,h3,h4,h5,h6 {
+    color: darkblue;
+    }
+
+    tr {
+        align-content: center
+    }
+
+  
+
+    .navbar a{
+        float: left;
+        display: block;
+        color:rgb(255,255,255);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14px;
+        
+    }
+    
+    .buttonsticks{
+                	background-color:#ffffff;
+                }
+                
+              
+            
+    .navbar a:hover {
+        background : #ffffff;
+        color:#000000;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand {
+            color : #ffffff;
+        }
+        
+        .centered {
+        	width : 350px;
+        	top: 62%;
+        }
+        
+        li{
+        	width : fit-content;
+        }
+    }
+    
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        position: relative; /* this can also be static */
+    }
+        
+        </style>

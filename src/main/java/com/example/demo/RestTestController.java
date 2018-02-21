@@ -1,0 +1,16 @@
+package com.example.demo;
+
+//import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class RestTestController {
+	
+	@RequestMapping(value = "/HMS", method = RequestMethod.GET)
+	public String showHomePage() {
+		return "/index.html";
+	}
+	
+}

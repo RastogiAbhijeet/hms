@@ -1,0 +1,138 @@
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name = "viewport" content = "width= device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+
+<body>
+<div class="navbar navbar-fixed-top" style="background:#5cb85c; margin-top:100px;">
+        <a class="navbar-brand" href="#" style="color:#ffffff;">Patient Referral System</a>
+                <ul class="nav navbar-nav navbar-right" style="font-weight: bold; padding-right :2%; " >
+                        <li><a href="#" style = "color:#ffffff;"><span class="glyphicon glyphicon-user" style="width:2em; color:white;"></span> HOME</a>
+                        </li>
+                </ul>
+    </div>  
+
+    
+<div class = "container-fluid " style = "margin-top:15%; margin-bottom:5%;">
+
+
+	<h3 align="center">PATIENT REFERRAL SYSTEM</h3>
+	<h4 align="center">| REGISTERATION FOR DOCTOR |</h4>
+    <form action=""  class = "form-group mobile_style" style = "margin-top :10%;">
+       
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">First Name<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="text" class = "form-control" required ng-model = "regForm.firstName"></div>
+            <div class="col-sm-3">Last Name<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="text" class = "form-control" required ng-model = "regForm.lastName"></div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">Registration Number<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="text" class="form-control" ng-model="regForm.regNo" required></div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">Email<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type=" email" ng-model="regForm.email" class = "form-control" required></div>
+            <div class="col-sm-3">Mobile Number<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="text" ng-model="regForm.mobileNo"  ng-minlength="10" ng-maxlength="10" class = "form-control" required></div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">Password<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="password" ng-model="regForm.password"  class = "form-control" required></div>
+            <div class="col-sm-3">Confirm Password<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="password" ng-model="confirmPassword" class = "form-control"required></div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">PGI/Non PGI:</div>
+            <div class="col-sm-3">
+                <select class="form-control" ng-model="regForm.doctorType">
+                    <option value="Non PGI">Non PGI</option>
+                    <option value="PGI">PGI</option>
+                </select>
+            </div>
+            <div class="col-sm-3">Hospital Name<span class = "requiredSign">*</span>:</div>
+            <div class="col-sm-3"><input type="text" placeholder="please specify" ng-model="regForm.hospitalName" class = "form-control" required></div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">Town/City<span class = "requiredSign">*</span>:</div>  
+            <div class="col-sm-3"><input type="text" ng-model="regForm.hospitalCity" class = "form-control" required></div>
+            <div class="col-sm-3">District<span class = "requiredSign">*</span>:</div>  
+            <div class="col-sm-3"><input type="text" ng-model="regForm.hospitalDistrict"  class = "form-control" required>
+            </div>
+        </div>
+        <div class = "row" style = "margin : 1%;">
+            <div class="col-sm-3">State<span class = "requiredSign">*</span>:</div>  
+            <div class="col-sm-3"><input type="text" ng-model="regForm.hospitalState" class = "form-control" required></div>
+            <div class="col-sm-3">Zipcode<span class = "requiredSign">*</span>:</div>  
+            <div class="col-sm-3"><input type="text" ng-model="regForm.hospitalZipcode"  class = "form-control" required></div>
+        </div>
+        
+        </form>
+        <div class = "row" style = "margin : 1%;">
+            <center>
+            	<button  class = "btn btn-default form-group buttonConfig " ng-click = "submitForm()">REGISTER</button>
+            </center>
+        </div>
+    
+    
+</div>
+    
+    
+</body>
+
+
+<style type = "text/css">
+
+
+	.buttonConfig{
+               background-color:#5cb85c ; 
+                        color : #ffffff; 
+                        width:30%;
+                        margin-top:2%;
+        }
+        
+
+	@media (max-width: 768px) {
+			        .navbar-brand {
+			   			margin-right : 10%;
+			            
+			    		}
+			    	
+			    	.mobile_style {
+			    		margin-top : 30%:
+			    	}
+   				}
+
+    span.requiredSign{
+        color:rgb(255, 69, 69);
+        size: 1.5em;
+    }
+
+    .navbar a{
+        float: left;
+        display: inline;
+        color:rgb(0,0,0);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14px;
+        
+    }
+    
+
+    .navbar a:hover {
+        background:rgb(255, 255, 255);
+        
+    }
+
+</style>
+</html>

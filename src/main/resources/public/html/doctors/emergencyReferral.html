@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HMS</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+         
+    
+    <body style = "background :#ffffff;">
+		<!-- #34659d -->
+		
+	
+        <nav class="navbar navbar-fixed-top" style="background-color: #5cb85c;">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-header-center">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style= " border:solid; border-color:#ffffff;" >
+                    <span class="icon-bar buttonsticks" ></span>
+                    <span class="icon-bar buttonsticks"></span>
+                    <span class="icon-bar buttonsticks"></span>                        
+                </button>
+                <a class="navbar-brand" href="#" style="align-self: center; color:#ffffff">Patient Referral System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right" style = "margin-top : 1px;">
+                  <li class="active"><a   ng-click = "redirect('pgiHome')" style = "border-left-style: solid; border-bottom-style = solid; border-width : 1px;">Emergency Referrals</a></li>
+                  <li><a  ng-click = "redirect('opdReferrals')" style = "border-left-style: solid; border-bottom-style = solid; border-width : 1px;">OPD Referrals</a></li>
+                  <li><a href = "#" style = "border-left-style: solid; border-width : 1px;">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+        <div class="container table-responsive" style = "margin-top:10%;">
+        <h3 align="center">EMERGENCY REFERRALS</h3>   
+            <div class="row" style = "margin-top: 5%;">
+                <div class="col-sm-6" align=left>Show<label for="numberOfThings">
+                    <select class="form-control sm" ng-options="option for option in listOfOptions" ng-model="pageSize" ng-change="pageSizeChanged()">
+                    </select>
+                </label></div>
+                <div class="col-sm-6" align=right>Search:<label for="search"><input class = "form-control inline"  type="text" ng-model="filterParam" align=right></label></div>
+            </div>
+            <div class="row">
+            <table border="1" class="table">
+            <tr class="default">
+            	<th>
+            		S.NO
+ 
+                <th ng-repeat="x in headings" >
+                    {{ x }}
+                </th>
+            </tr>
+
+            <tr ng-repeat="y in testData | filter:filterParam " class="danger" id="{{$index}}" ng-style = "background()">
+                    <td>{{$index + 1}}</td>
+                    
+          
+                    <td><a ng-click = "changeState('visible', y['Patient Name'])">{{y['Patient Name']}}</a></td>
+                    <td>{{y['Date']}}</td>
+                    <td>{{y['Referral Time']}}</td>
+                    <td>{{y['Expected Arrival Time']}}</td>
+                    <td>{{y['Provisional Diagnosis']}}</td>
+                    <td><button id="{{$index}}" ng-click = "feedback(y)">{{y['PGI Action']}}</button></td>             
+            </tr>
+        </table>
+        </div>
+        
+    </div>
+    
+    	
+    <div id= "details_div" class = "container-fluid centered" ng-style = "hide()" style = "background : #ffffff;  border-radius: 2%; border:solid; border-weight:1px;">
+		 <h3>Referral Details</h3>
+        <hr style = "margin-top :1%; margin-bottom:1%;">
+        <div class = "row" ng-repeat = "z in patientLabels" >
+            <div class = "col-xs-6">
+                {{z}}
+            </div>
+            <div class = "col-xs-6">
+                {{patientData[z]}}
+            </div>   
+        </div>
+        <hr style = "margin-top :2%; margin-bottom:1%; background-color : #ffffff;">
+        <span id = "hide" class = "glyphicon glyphicon-remove" style = "left : 50%; margin-bottom :2%;" ng-click = "changeState('hidden')")></span>
+	</div>
+    
+</div>
+    
+    
+</body>
+
+
+<style type = "text/css">
+
+	 .centered{
+        position: fixed;
+        top: 62%;
+        left: 50%;
+        height :450px;
+        width:450px;   
+        transform: translate(-50%, -50%);
+    }
+	
+    h1,h2,h3,h4,h5,h6 {
+    color: darkblue;
+    }
+
+    tr {
+        align-content: center
+    }
+
+  
+
+    .navbar a{
+        float: left;
+        display: block;
+        color:rgb(255,255,255);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14px;
+        
+    }
+    
+    .buttonsticks{
+                	background-color:#ffffff;
+                }
+                
+              
+            
+    .navbar a:hover {
+        background : #ffffff;
+        color:#000000;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand {
+            color : #ffffff;
+        }
+        
+        .centered {
+        	width : 350px;
+        	top: 62%;
+        }
+        
+        li{
+        	width : fit-content;
+        }
+    }
+    
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        position: relative; /* this can also be static */
+    }
+    
+</style>
+
+</html>

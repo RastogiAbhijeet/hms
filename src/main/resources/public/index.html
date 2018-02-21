@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+		<script src = "js/router.js"></script>
+		<script src = "js/controller.js"></script>
+		<script src = "js/factories.js"></script>
+		<script src = "js/dirPagination.js"></script>
+		
+		<meta name = "viewport" content = "width= device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel ="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"/>
+	</head>
+
+	<body ng-app ="manageDoctors">
+	
+		<div class = "nav navbar-fixed-top container" style = "width : 100%; height:100px; background:#34659d;">
+			
+			<table class = "table table-responsive">
+				<tr>
+					<td><img src = "webcontent/asd.png" style = "height : 75px; width : 75px;"></td>
+					<td align=center><span class="header">PEDIATRIC EMERGENCY UNIT</span><br><span class="subheader">Advanced Pediatrics Center, PGIMER, Chandigarh</span></td>
+					<td align=right><img src = "webcontent/pgi.png" style = "height : 75px; width : 75px;"></td>
+				</tr>			
+			</table>
+			
+			
+		</div>
+		
+		<div ng-view></div>
+			
+		</body>
+		
+		<style type = "text/css">
+		
+			.header{
+				color: white;
+				font-size: 2.25em;
+			}
+			.subheader{
+				color:white;
+				font-size: 1.5em;
+			}
+			
+		   @media (max-width: 768px) {
+       			.table{
+       				margin-left : 2%;
+       				border-width: 0;
+       			}
+       			
+       			.header{
+					font-size: 1em;
+				}
+				.subheader{
+				color:white;
+				font-size: 0.75em;
+			}
+			}
+       				
+		</style>
+ 
+</html>

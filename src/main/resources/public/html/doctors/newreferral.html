@@ -39,10 +39,17 @@
     </nav>
     
     <div class = "container" style = "margin-top : 5%; position :relative;">
-        <form class = "form-group">
+    	
+    	<center>
+    		<h3>
+    			New Emergency Referral
+    		</h3>
+    	</center>
+    
+        <form class = "form-group" style = "margin-top : 2%;">
             <div class = "row" style = "margin : 1%;">
                 <div class ="col-sm-3">Doctors Name<span class = "requiredSign">*</span>:</div>   
-                <div class ="col-sm-3"><input type="text" class = "form-control" required ng-model = "newReferral.doctorName"></div>   
+                <div class ="col-sm-3"><input type="text" class = "form-control" required ng-model = "doctorName"></div>   
                 <div class ="col-sm-3">Department</div>   
                 <div class ="col-sm-3">
                 	<select required  class = "form-control" ng-options = "x for x in departments" ng-model = "newReferral.doctorDepartment">
@@ -53,7 +60,9 @@
         
             <div class = "row" style = "margin : 1%;">
                 <div class ="col-sm-3" >Referred From<span class = "requiredSign">*</span>:</div>   
-                <div class ="col-sm-3"><input type="text" class = "form-control"  ng-model = "newReferral.referredFrom" required  ></div>   
+                <div class ="col-sm-3"><input type="text" class = "form-control"  ng-model = "referredFrom" required  ></div> 
+                <div class ="col-sm-3">Age(In Years)<span class = "requiredSign">*</span>:</div>   
+                <div class ="col-sm-3"><input type="text" required ng-model="newReferral.age" class = "form-control"></div>   
             </div>
         
             <div class = "row" style = "margin : 1%;">
@@ -72,18 +81,19 @@
                 <div class ="col-sm-3"><input type="text" required  class = "form-control" ng-model = "newReferral.patientName" required></div>   
                 <div class ="col-sm-3">Expected Time of Arrival to PGI<span class = "requiredSign"></span>:</div>   
                 <div class = "col-sm-3">
-                	<input type = "time" ng-model = "newReferral.arrivalTime">
+                	<input class="form-control time" type = "time" ng-model = "newReferral.arrivalTime">
                 </div>
             </div>
         
-            <div class = "row" style = "margin : 1%;">
-                <div class ="col-sm-3">Age(In Years)<span class = "requiredSign">*</span>:</div>   
-                <div class ="col-sm-3"><input type="text" required ng-model="newReferral.age" class = "form-control"></div> 
-              
-            </div>
         
             <div class = "row" style = "margin : 1%;">
-                <div class ="col-sm-3">Reasons for Referral:</div>   
+                <div class ="col-sm-3">Reasons for Referral:</div> 
+                <div class ="col-sm-3">
+                	<select required  class = "form-control" ng-options = "x for x in reasons" ng-model = "newReferral.referralReason">
+                    	<option value = {{x}}>
+                    </select>
+                </div> 
+                <div class = "col-sm-3">Any Other Reason </div>  
                 <div class ="col-sm-3"><input type="text" ng-model = "newReferral.referralReason" required  class = "form-control"></div>   
             </div>
         
@@ -135,7 +145,8 @@
 
                     <div class= "row" style = "margin-top : 5%;">
 	                    <center>
-	                    	<button class = "btn form-group" ng-click = "addNewReferral()" >Submit</button>
+	                    	<button class = "btn btn-success form-group" ng-click = "addNewReferral()" >Submit</button>
+	                    	<input class="btn" type="reset" ng-click = "redirect('nonpgiHome')" value = "Cancel">
 	                    </center>
                     </div>                    
                 </div>    
@@ -150,6 +161,13 @@
         color:rgb(255, 69, 69);
         size: 1.5em;
     }
+    
+     .btn{
+  		width : 120px;
+  		margin-left = 5px;
+  		margin-right = 5px;
+  	}
+    
 
   
 	 .centered{

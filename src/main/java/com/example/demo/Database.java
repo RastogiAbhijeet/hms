@@ -21,42 +21,46 @@ public class Database {
 		    catch (Exception ex) {System.err.println(ex.getMessage());}
 		  }
 
-		public String addDoctorInfo(DoctorDetails doctorObj){
+		public String addDoctorInfo(HashMap<String, String> doctorObj){
+//			System.out.println(doctorObj.doctorSpeciality);
 			// the mysql insert statement
-		    String query1 = "INSERT INTO doctor_table (FirstName, LastName, RegNo, Email, MobileNo, Password, DoctorType, HospitalName, HospitalCity, HospitalDistrict, HospitalState, HospitalZipcode)"
-		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		    String query1 = "INSERT INTO doctor_table (FirstName, LastName, RegNo, Email, MobileNo, Password, DoctorType, HospitalName, HospitalCity, HospitalDistrict, HospitalState, HospitalZipcode, Speciality, Acknowledgement)"
+		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 		    
 //		     create the mysql insert preparedstatement
 		    PreparedStatement preparedStmt1;
 			try {
 				preparedStmt1 = conn.prepareStatement(query1);
-				preparedStmt1.setString (1, doctorObj.firstName);
-			    preparedStmt1.setString (2, doctorObj.lastName);
-			    preparedStmt1.setString (3, doctorObj.regNo);
-			    preparedStmt1.setString (4, doctorObj.email);
-			    preparedStmt1.setString (5, doctorObj.mobileNo);
-			    preparedStmt1.setString (6, doctorObj.password);
-			    preparedStmt1.setString (7, doctorObj.doctorType);
-			    preparedStmt1.setString (8, doctorObj.hospitalName);
-			    preparedStmt1.setString (9, doctorObj.hospitalCity);
-			    preparedStmt1.setString (10, doctorObj.hospitalDistrict);
-			    preparedStmt1.setString (11, doctorObj.hospitalState );
-			    preparedStmt1.setString (12, doctorObj.hospitalZipcode);
+				preparedStmt1.setString (1, doctorObj.get("firstName"));
+			    preparedStmt1.setString (2, doctorObj.get("lastName"));
+			    preparedStmt1.setString (3, doctorObj.get("regNo"));
+			    preparedStmt1.setString (4, doctorObj.get("email"));
+			    preparedStmt1.setString (5, doctorObj.get("mobileNo"));
+			    preparedStmt1.setString (6, doctorObj.get("password"));
+			    preparedStmt1.setString (7, doctorObj.get("doctorType"));
+			    preparedStmt1.setString (8, doctorObj.get("hospitalName"));
+			    preparedStmt1.setString (9, doctorObj.get("hospitalCity"));
+			    preparedStmt1.setString (10, doctorObj.get("hospitalDistrict"));
+			    preparedStmt1.setString (11, doctorObj.get("hospitalState"));
+			    preparedStmt1.setString (12, doctorObj.get("hospitalZipcode"));
+			    preparedStmt1.setString (13, doctorObj.get("doctorSpeciality"));
+			    preparedStmt1.setString (14, "");
 			    
 			    // execute the preparedstatement
 			    preparedStmt1.execute();
 			    
+			   		    
 			    //ADDING EMAIL PASSWORD ETC TO DOCTOR_ACTION_TABLE
 			    // the mysql insert statement
 			    String query2 = "INSERT INTO doctor_action_table (Email, Password, RegNo, Action, DoctorType)"
 			        + " values (?, ?, ?, ?,?)";
 			    // create the mysql insert preparedstatement
 			    PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
-			    preparedStmt2.setString (1, doctorObj.email);
-			    preparedStmt2.setString (2, doctorObj.password);
-			    preparedStmt2.setString (3, doctorObj.regNo);
-			    preparedStmt2.setString (4, "Disable"); //by default, set to false
-			    preparedStmt2.setString (5, doctorObj.getDoctorType());
+			    preparedStmt2.setString (1, doctorObj.get("email"));
+			    preparedStmt2.setString (2, doctorObj.get("password"));
+			    preparedStmt2.setString (3, doctorObj.get("regNo"));
+			    preparedStmt2.setString (4, "Enable"); //by default, set to false
+			    preparedStmt2.setString (5, doctorObj.get("doctorType"));
 			    
 			    // execute the preparedstatement
 			    preparedStmt2.execute();
@@ -92,6 +96,7 @@ public class Database {
 					obj.put("Doctor Type",rs.getString("DoctorType"));
 					obj.put("Actions",rs.getString("Action"));
 					obj.put("Mobile",rs.getString("MobileNo"));
+					obj.put("Speciality", rs.getString("Speciality"));
 				
 					list.add(obj);
 					
@@ -231,6 +236,7 @@ public class Database {
 				obj.put("Is Admitted", rs.getString("IsAdmitted"));
 				obj.put("Expected Arrival Date", rs.getString("ExpectedArrivalDate"));
 				obj.put("Hospital Department", rs.getString("HospitalDepartment"));
+				obj.put("Speciality", rs.getString("Department"));
 				list.add(obj);				
 			}
 			
@@ -256,7 +262,7 @@ public class Database {
 				obj.put("Patient Name", rs.getString("PatientName"));
 				obj.put("Doctor Name", rs.getString("DoctorName"));
 				obj.put("Referred From", rs.getString("ReferredFrom"));
-				obj.put("Date", rs.getString("Date"));
+				obj.put("Referral Date", rs.getString("Date"));
 				obj.put("Department", rs.getString("Department"));
 				obj.put("Time", rs.getString("Time"));
 				obj.put("Arrival Time", rs.getString("ArrivalTime"));
@@ -271,11 +277,13 @@ public class Database {
 				obj.put("Ambulance Provided", rs.getString("AmbulanceProvided"));
 				obj.put("Trained Prof", rs.getString("TrainedProf"));
 				obj.put("Acknowledgement", rs.getString("Acknowledgement"));
-				obj.put("Feedback", rs.getString("Feedback"));
+				obj.put("PGI Feedback", rs.getString("Feedback"));
+				obj.put("Arrival Date", rs.getString("ExpectedArrivalDate"));
+				obj.put("Is Admitted", rs.getString("IsAdmitted"));
+				
 				
 			}
 			
-//			System.out.print(obj.getPatientName());
 			return obj;
 		}
 		
@@ -415,6 +423,7 @@ public class Database {
 					HashMap<String, String> hm = new HashMap<>();
 					rs.previous();
 					while(rs.next()) {
+						
 						hm.put("email", rs.getString("Email"));
 						hm.put("doctorType",rs.getString("DoctorType"));
 						hm.put("action", rs.getString("action"));
@@ -474,6 +483,39 @@ public class Database {
 			}
 //		    getDoctorAction();
 		    return "Toggled";
+		}
+		
+		public HashMap<String, String> get_doct_ref(HashMap<String,String> req){
+			
+			Statement stmt;
+			try {
+				stmt = conn.createStatement();
+				String query1 = "SELECT * FROM doctor_table WHERE Email = '" + req.get("email") + "'";
+				
+				
+				//execute SQL query
+				ResultSet rs = stmt.executeQuery(query1);
+				 //positioning the cursor before the first row and then requesting data
+				
+				HashMap<String,String> obj = new HashMap<>();
+				
+				rs.next();
+					obj.put("Name",rs.getString("FirstName") +" "+ rs.getString("LastName"));
+					obj.put("Registration Number",rs.getString("RegNo"));
+					obj.put("Email",rs.getString("Email"));
+					obj.put("Doctor Type",rs.getString("DoctorType"));
+					obj.put("Hospital Name", rs.getString("HospitalName"));
+					obj.put("Speciality",rs.getString("Speciality"));
+				
+				System.out.println(obj.toString());
+				return obj;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
 		}
 	
 

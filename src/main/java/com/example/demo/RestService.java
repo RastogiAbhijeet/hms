@@ -62,7 +62,7 @@ public class RestService {
 
 	// Register doctor
 	@RequestMapping(value = "/registerDoctor", method = RequestMethod.POST)
-	public Map<String,String> registerDoctor(@RequestBody DoctorDetails details) {
+	public Map<String,String> registerDoctor(@RequestBody HashMap<String, String> details) {
 
 
 //		System.out.println(details.doctorName);
@@ -126,6 +126,23 @@ public class RestService {
 		return null;
 	}
 
+
+
+	@RequestMapping(value = "/fetchDoctor", method = RequestMethod.POST)
+	public HashMap<String, String> fetchDoctor(@RequestBody HashMap<String, String> hm) {
+		
+		Database dbObj = new Database();
+		try {
+			System.out.println(hm);
+			return dbObj.get_doct_ref(hm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				    
+		return null;
+	}
+
+	
 	@RequestMapping(value = "/fetchPatient", method = RequestMethod.POST)
 	public HashMap<String, String> fetchpatient(@RequestBody HashMap<String, String> hm) {
 		

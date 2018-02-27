@@ -35,60 +35,74 @@
     </nav>
     
     
-        <div class="container table-responsive" style = "margin-top:10%;">
-        <h3 align="center">OPD REFERRALS</h3>   
+        <div class="container" style = "margin-top:5%;">
+       		
+       		<h3 align="center">OPD REFERRALS</h3>   
+       		
             <div class="row" style = "margin-top: 5%;">
-                <div class="col-sm-6" align=left>Show<label for="numberOfThings">
-                    <select class="form-control sm" ng-options="option for option in listOfOptions" ng-model="pageSize" ng-change="pageSizeChanged()">
-                    </select>
-                </label></div>
-                <div class="col-sm-6" align=right>Search:<label for="search"><input class = "form-control inline"  type="text" ng-model="filterParam" align=right></label></div>
+               	<div  style = "float : right; margin-bottom : 1%;">
+                Search By Name : <label for="search"><input class = "form-control inline"  type="text" ng-model="filterName" align=right></label>
+                Speciality : <label for="search">
+                               	<select required  class = "form-control" ng-options = "x for x in departments" ng-model = "filterParam">
+                    	<option value = {{x}}>
+                    </select></label>
+                </div>
+                
             </div>
-            <div class="row">
-            <table border="1" class="table">
-            <tr class="default">
-            	<th>
-            		S.NO
- 
-                <th ng-repeat="x in headings" >
-                    {{ x }}
-                </th>
-            </tr>
-
-            <tr ng-repeat="y in testData | filter:filterParam " class="danger" id="{{$index}}" ng-style = "background()">
-                    <td>{{$index + 1}}</td>
-                    
-          
-                    <td><a ng-click = "changeState('visible', y['Patient Name'])">{{y['Patient Name']}}</a></td>
-                    <td>{{y['Date']}}</td>
-                    <td>{{y['Expected Arrival Date']}}</td>
-                    <td>{{y['Provisional Diagnosis']}}</td>
-                    <td><button id="{{$index}}" ng-click = "feedback(y)">{{y['PGI Action']}}</button></td>             
-            </tr>
-        </table>
+            <div class="row table-responsive">
+            	<table class="table table-bordered">
+	            <tr class="default">
+	            	<th>
+	            		S.NO
+	 
+	                <th ng-repeat="x in headings" >
+	                    {{ x }}
+	                </th>
+	            </tr>
+	
+	            <tr ng-repeat="y in testData | filter:filterParam | filter : filterName" class="danger" id="{{$index}}" >
+	                    <td>{{$index + 1}}</td>
+	                    
+	          
+	                    <td><a ng-click = "changeState('visible', y['Patient Name'])">{{y['Patient Name']}}</a></td>
+	                    <td>{{y['Date']}}</td>
+	                    <td>{{y['Expected Arrival Date']}}</td>
+	                    <td>{{y['Provisional Diagnosis']}}</td>
+	                    <td>{{y['Speciality']}}</td>
+	                    <td>
+		                    <center>
+		                    	<button class = "btn btn-default btn-block" style ="width :200px;" id="{{$index}}" ng-click = "feedback(y)">{{y['PGI Action']}}</button>
+		                    </center>
+	                    </td>             
+	            </tr>
+	        </table>
         </div>
-        <div class="row text-center">
-            <dir-pagination-controls
-                    max-size="pageSize"
-                    direction-links="true">
-            </dir-pagination-controls>  
-        </div>
+      
     </div>
     
     	
     <div id= "details_div" class = "container-fluid centered" ng-style = "hide()" style = "background : #ffffff;  border-radius: 2%; border:solid; border-weight:1px;">
-		 <h3>Referral Details</h3>
+		   <span id = "hide" class = "glyphicon glyphicon-remove" style = "float: right; display : block; margin-top : 5%; " ng-click = "changeState('hidden')")></span>
+		 <h3 style = "display : inline-block;">Referral Details</h3>
         <hr style = "margin-top :1%; margin-bottom:1%;">
         <div class = "row" ng-repeat = "z in patientLabels" >
             <div class = "col-xs-6">
                 {{z}}
             </div>
             <div class = "col-xs-6">
-                {{patientData[z]}}
+                <span ng-if = "patientData[z] == 'true'">
+                	Yes
+                </span>
+                <span ng-if = "patientData[z] == 'false'|| patientData[z] == null">
+                	No
+                </span>
+                <span ng-if = "patientData[z] != 'true' && patientData[z] != 'false' && patientData[z] != 'undefined' ">
+                	{{patientData[z]}}
+                </span>
             </div>   
         </div>
         <hr style = "margin-top :2%; margin-bottom:1%; background-color : #ffffff;">
-        <span id = "hide" class = "glyphicon glyphicon-remove" style = "left : 50%; margin-bottom :2%;" ng-click = "changeState('hidden')")></span>
+       
 	</div>
     
 </div>
@@ -141,6 +155,12 @@
         color:#000000;
     }
     
+    .btn{
+  		width : 120px;
+  		margin-left = 5px;
+  		margin-right = 5px;
+  	}
+    
     @media (max-width: 768px) {
         .navbar-brand {
             color : #ffffff;
@@ -165,5 +185,6 @@
     }
     
 </style>
+
 
 </html>

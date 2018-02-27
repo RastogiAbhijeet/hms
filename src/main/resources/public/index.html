@@ -14,6 +14,8 @@
 		<script src = "js/factories.js"></script>
 		<script src = "js/dirPagination.js"></script>
 		
+		<link rel="stylesheet" href="css/alert.css">
+		
 		<meta name = "viewport" content = "width= device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,7 +30,8 @@
 			<table class = "table table-responsive">
 				<tr>
 					<td><img src = "webcontent/asd.png" style = "height : 75px; width : 75px;"></td>
-					<td align=center><span class="header">PEDIATRIC EMERGENCY UNIT</span><br><span class="subheader">Advanced Pediatrics Center, PGIMER, Chandigarh</span></td>
+					<td align=center style = "padding-top : 2%;"><span class="header" >Advanced Pediatrics Center - PGIMER, Chandigarh</span>
+					</td>
 					<td align=right><img src = "webcontent/pgi.png" style = "height : 75px; width : 75px;"></td>
 				</tr>			
 			</table>
@@ -37,18 +40,22 @@
 		</div>
 		
 		<div ng-view></div>
-			
+		
+		
+					
 		</body>
 		
 		<style type = "text/css">
 		
+			
+		
 			.header{
+			
 				color: white;
 				font-size: 2.25em;
 			}
 			.subheader{
 				color:white;
-				font-size: 1.5em;
 			}
 			
 		   @media (max-width: 768px) {

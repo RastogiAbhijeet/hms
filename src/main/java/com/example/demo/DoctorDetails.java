@@ -2,7 +2,7 @@ package com.example.demo;
 
 public class DoctorDetails {
 	String firstName,lastName,regNo,email,mobileNo,password,doctorType;
-    String hospitalName,hospitalCity,hospitalDistrict,hospitalState,hospitalZipcode;
+    String hospitalName,hospitalCity,hospitalDistrict,hospitalState,hospitalZipcode, doctorSpeciality;
     
     public String getFirstName(){
         return firstName;

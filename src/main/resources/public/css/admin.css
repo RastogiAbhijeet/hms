@@ -1,0 +1,93 @@
+    span.requiredSign{
+        color:rgb(255, 69, 69);
+        size: 1.5em;
+    }
+    
+    .btn{
+  		width : 120px;
+  		margin-left = 5px;
+  		margin-right = 5px;
+  	}
+
+	.centered{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        height :450px;
+        width:450px;   
+        transform: translate(-50%, -50%);
+    }
+
+    .centeredDoc{
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+    }
+	
+    h1,h2,h3,h4,h5,h6 {
+    color: darkblue;
+    }
+
+    tr {
+        align-content: center
+    }
+
+  
+
+    .navbar a{
+        float: left;
+        display: block;
+        color:rgb(255,255,255);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14px;
+        
+    }
+    
+    .buttonsticks{
+                	background-color:#ffffff;
+                }
+                
+              
+            
+    .navbar a:hover {
+        background : #ffffff;
+        color:#000000;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand {
+            color : #ffffff;
+        }
+        
+        .centered {
+        	width : 350px;
+        	top: 62%;
+        }
+        
+        li{
+        	width : fit-content;
+        }
+    }
+    
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        position: relative; /* this can also be static */
+    }
+
+    input.fields{
+                margin-top : 3%;
+                width: 350px;
+        }
+
+    .buttonConfig{
+                     background-color:#5cb85c ; 
+                        color : #ffffff; 
+                        width:40%;
+        }

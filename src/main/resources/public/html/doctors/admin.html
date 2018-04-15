@@ -1,41 +1,34 @@
-<style type = "text/css">
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src = "controller.js"></script>
+    <meta name = "viewport" content = "width= device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel ="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"/>
+    
+    <link rel="stylesheet" type="text/css" href="doctors.css">
+    <style type="text/css">
         .centered{
                 position: fixed;
                 top:50%;
                 left:50%;
                 transform: translate(-50%, -50%);
         }
-
-        input.fields{
-                margin-top : 3%;
-                width: 350px;
-        }
-
-        .buttonConfig{
-               background-color:#5cb85c ; 
-                        color : #ffffff; 
-                        width:40%;
-        }
         
         @media (max-width: 768px) {
-			        .navbar-brand {
-			   			margin-right : 10%;
-			            
-			    		}
-			    	.navbar-brand li{
-			    		position:fixed;
-			    		padding-left : 20%;
-			    	}
-   				}
-   				
-   				.btn{
-  		width : 120px;
-  		margin-left = 5px;
-  		margin-right = 5px;
-  	}
-      
-</style>
-
+                    .navbar-brand {
+                        margin-right : 10%;
+                        
+                        }
+                    .navbar-brand li{
+                        position:fixed;
+                        padding-left : 20%;
+                    }
+                }
+    </style>
 </head>
 
 <body>
@@ -52,7 +45,7 @@
                 
         <div class = "container">
         
-                <form class="form-group centered" style = "padding:2%;" method="post" id="myLogin">
+                <form class="form-group centeredDoc" style = "padding:2%;" method="post" id="myLogin">
                         <div class = "row">
                                 <span><h3>Admin Login</h3></span><hr style = "border-width : 2px; border-color:rgb(68, 66, 66); margin-top:-1%; ">
                         </div>
@@ -71,5 +64,5 @@
                         </div>
                 </form>
         </div>
-
 </body>
+</html>

@@ -6,26 +6,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 public class Database {
 	
 		Connection conn;
+		private static String usernameDB = "jdbc:mysql://localhost/hms";
+		private static String passwordDB = "root";
+		public PassEncode passwordEncoder;
+				
 		
 		public Database()
 		  {
 		    try
 		    {
-		    	System.out.println("haha");
-		    	conn = DriverManager.getConnection("jdbc:mysql://localhost/hms","root","");
+		    	conn = DriverManager.getConnection(usernameDB,passwordDB,"");
 		    }
 		    catch (Exception ex) {System.err.println(ex.getMessage());}
 		  }
 
+		
 		public String addDoctorInfo(HashMap<String, String> doctorObj){
 //			System.out.println(doctorObj.doctorSpeciality);
 			// the mysql insert statement
-		    String query1 = "INSERT INTO doctor_table (FirstName, LastName, RegNo, Email, MobileNo, Password, DoctorType, HospitalName, HospitalCity, HospitalDistrict, HospitalState, HospitalZipcode, Speciality, Acknowledgement)"
-		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+		    String query1 = "INSERT INTO doctor_table (FirstName, LastName, RegNo, Email, MobileNo, Password, DoctorType, HospitalName, HospitalCity, HospitalDistrict, HospitalState, HospitalZipcode, Speciality)"
+		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		    
+		    passwordEncoder = new PassEncode();
 		    
 //		     create the mysql insert preparedstatement
 		    PreparedStatement preparedStmt1;
@@ -36,7 +44,8 @@ public class Database {
 			    preparedStmt1.setString (3, doctorObj.get("regNo"));
 			    preparedStmt1.setString (4, doctorObj.get("email"));
 			    preparedStmt1.setString (5, doctorObj.get("mobileNo"));
-			    preparedStmt1.setString (6, doctorObj.get("password"));
+			    preparedStmt1.setString (6, passwordEncoder.encodePass(doctorObj.get("password")));
+//			    System.out.println(PassEncode.encodePass(doctorObj.get("password")));
 			    preparedStmt1.setString (7, doctorObj.get("doctorType"));
 			    preparedStmt1.setString (8, doctorObj.get("hospitalName"));
 			    preparedStmt1.setString (9, doctorObj.get("hospitalCity"));
@@ -44,7 +53,6 @@ public class Database {
 			    preparedStmt1.setString (11, doctorObj.get("hospitalState"));
 			    preparedStmt1.setString (12, doctorObj.get("hospitalZipcode"));
 			    preparedStmt1.setString (13, doctorObj.get("doctorSpeciality"));
-			    preparedStmt1.setString (14, "");
 			    
 			    // execute the preparedstatement
 			    preparedStmt1.execute();
@@ -54,10 +62,14 @@ public class Database {
 			    // the mysql insert statement
 			    String query2 = "INSERT INTO doctor_action_table (Email, Password, RegNo, Action, DoctorType)"
 			        + " values (?, ?, ?, ?,?)";
+			    
+			    PassEncode passObj = new PassEncode();
+			    
+			    
 			    // create the mysql insert preparedstatement
 			    PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
 			    preparedStmt2.setString (1, doctorObj.get("email"));
-			    preparedStmt2.setString (2, doctorObj.get("password"));
+			    preparedStmt2.setString (2, passObj.encodePass(doctorObj.get("password")));
 			    preparedStmt2.setString (3, doctorObj.get("regNo"));
 			    preparedStmt2.setString (4, "Enable"); //by default, set to false
 			    preparedStmt2.setString (5, doctorObj.get("doctorType"));
@@ -412,26 +424,34 @@ public class Database {
 		}
 
 		public HashMap<String,String> getDoctorAction(String username, String password) {
-			System.out.println("Username " + username + "Password " + password);
+			PassEncode passEncoder = new PassEncode();
+//			System.out.println("Username " + username + "Password " + PassEncode.encodePass(password));
+//			System.out.println(PassEncode.encodePass(password));
 			//create a statement
 			try {
+				
+				
 				Statement stmt = conn.createStatement();
-				String query = "SELECT * FROM doctor_action_table where Email = '"+username+"' AND Password = '"+password+"'";
+				String query = "SELECT * FROM doctor_action_table where Email = '"+username+"'"; //AND Password = '"+PassEncode.encodePass(password)+"'";
 				ResultSet rs = stmt.executeQuery(query);
 				
 				if(rs.next()) {
-					HashMap<String, String> hm = new HashMap<>();
-					rs.previous();
-					while(rs.next()) {
 						
-						hm.put("email", rs.getString("Email"));
-						hm.put("doctorType",rs.getString("DoctorType"));
-						hm.put("action", rs.getString("action"));
-					}
-					
-					System.out.println(hm.toString());
-					return hm;
-	
+						if(passEncoder.checkPass(password, rs.getString("Password"))) {
+							System.out.print(rs.getString("Password"));
+							HashMap<String, String> hm = new HashMap<>();
+							rs.previous();
+							while(rs.next()) {
+								
+								hm.put("email", rs.getString("Email"));
+								hm.put("doctorType",rs.getString("DoctorType"));
+								hm.put("action", rs.getString("action"));
+							}
+							
+							System.out.println(hm.toString());
+							return hm;
+						}
+						
 				}else {
 					HashMap<String, String> hm = new HashMap<>();
 					hm.put("message", "Record Doesn't Exist");

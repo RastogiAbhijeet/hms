@@ -5,8 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <meta name = "viewport" content = "width= device-width, initial-scale=1">
     
-    
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -14,6 +12,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" href="doctors.css">
+
+    <style type = "text/css">
+        tr {
+            align-content: center
+        }
+
+        .navbar a{
+            float: left;
+            display: block;
+            color:rgb(255,255,255);
+            text-align: center;
+            padding: 14px 16px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            
+        }
+    </style>
 </head>
     
 <body>
@@ -108,84 +125,9 @@
                 <input class="btn btn-success"  type="submit" ng-click = "sendFeedback()" >
                  <input class="btn" type="reset" ng-click = "redirect('pgiHome')" value = "Cancel">
             <div>
-        </div>        
-        
+        </div>         
 </form>
-
-
-
+</div>
 
 </body>
-
-<style type = "text/css">
-
-	
-	.requiredSign{
-		color:red;
-	}
-	
-	 
-    h1,h2,h3,h4,h5,h6 {
-    color: darkblue;
-    }
-
-    tr {
-        align-content: center
-    }
-
-  
-  	.btn{
-  		width : 120px;
-  		margin-left = 5px;
-  		margin-right = 5px;
-  	}
-
-    .navbar a{
-        float: left;
-        display: block;
-        color:rgb(255,255,255);
-        text-align: center;
-        padding: 14px 16px;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 14px;
-        
-    }
-    
-    .buttonsticks{
-       	background-color:#ffffff;
-    }
-                
-              
-            
-    .navbar a:hover {
-        background : #ffffff;
-        color:#000000;
-    }
-    
-    @media (max-width: 768px) {
-        .navbar-brand {
-            color : #ffffff;
-        }
-        
-        .centered {
-        	width : 350px;
-        	top: 62%;
-        }
-        
-        li{
-        	width : fit-content;
-        }
-    }
-    
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
-    
-    .navbar-fixed-top, .navbar-fixed-bottom {
-        position: relative; /* this can also be static */
-    }
-    
-</style>
-
 </html>

@@ -1,0 +1,88 @@
+    .centered{
+        position: fixed;
+        top: 62%;
+        left: 50%;
+        height :450px;
+        width:450px;   
+        transform: translate(-50%, -50%);
+    }
+
+    .requiredSign{
+      color:red;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      color: darkblue;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand {
+            color : #ffffff;
+        }
+        
+        .centered {
+            width : 350px;
+            top: 62%;
+        }
+        
+        li{
+            width : fit-content;
+            border-right : solid;
+            border-width:1px;
+                        
+        }
+        .btn{
+          width : fit-content;
+        }
+    }
+		
+   	.btn{
+  		    width : 120px;
+  		    margin-left = 5px;
+  		    margin-right = 5px;
+  	}
+      
+    
+    .navbar-fixed-top, .navbar-fixed-bottom {
+          position: relative;
+    }
+
+    .navbar a{
+        float: right;
+        display: block;
+        color:rgb(255,255,255);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14px;
+        border-left : solid;
+        border-width:1px;   
+    }
+    
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    
+    .buttonsticks{
+                  background-color:#ffffff;
+                }
+
+    .navbar a:hover {
+        background:#ffffff;
+        color:#000000;
+    }
+
+    //admin page, doctor login
+    input.fields{
+                margin-top : 3%;
+                width: 350px;
+    }
+        
+    //admin page, doctor login
+    .buttonConfig{
+               background-color:#5cb85c ; 
+                        color : #ffffff; 
+                        width:40%;
+    }
+      
